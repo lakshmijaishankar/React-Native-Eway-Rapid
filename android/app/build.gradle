@@ -75,6 +75,12 @@ def apikeyPropertiesFile = project.rootProject.file("apikey.properties")
 def apikeyProperties = new Properties()
 if (apikeyPropertiesFile.exists()) {
     apikeyProperties.load(apikeyPropertiesFile.newDataInputStream())
+} else {
+    // Load from system environment variables if apikey.properties doesn't exist
+    apikeyProperties['EWAY_API_KEY'] = System.getenv("EWAY_API_KEY") ?: '""'
+    apikeyProperties['EWAY_END_POINT'] = System.getenv("EWAY_END_POINT") ?: '""'
+    apikeyProperties['EWAY_API_PASSWORD'] = System.getenv("EWAY_API_PASSWORD") ?: '""'
+    apikeyProperties['EWAY_PUBLIC_KEY'] = System.getenv("EWAY_PUBLIC_KEY") ?: '""'
 }
 
 android {
