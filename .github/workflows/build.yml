@@ -45,7 +45,7 @@ jobs:
       - name: Run Gradle build
         run: |
           cd ./android
-          ./gradlew build
+          ./gradlew clean build
         env:
           EWAY_API_KEY: ${{ env.EWAY_API_KEY }}
           EWAY_API_PASSWORD: ${{ env.EWAY_API_PASSWORD }}
