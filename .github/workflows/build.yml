@@ -32,7 +32,9 @@ jobs:
         run: chmod +x ./android/gradlew
         
       - name: Run Gradle build
-        run: ./gradlew build
+        run: |
+          cd ./android
+          ./gradlew build
         env:
           EWAY_API_KEY: ${{ env.EWAY_API_KEY }}
           EWAY_API_PASSWORD: ${{ env.EWAY_API_PASSWORD }}
