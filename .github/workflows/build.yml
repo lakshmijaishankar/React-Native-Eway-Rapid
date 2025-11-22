@@ -28,6 +28,9 @@ jobs:
           echo "EWAY_PUBLIC_KEY=${{ secrets.EWAY_PUBLIC_KEY }}" >> $GITHUB_ENV
           echo "EWAY_END_POINT=${{ secrets.EWAY_END_POINT }}" >> $GITHUB_ENV
 
+      - name: Change wrapper permissions
+        run: chmod +x ./android/gradlew
+        
       - name: Run Gradle build
         run: ./gradlew build
         env:
@@ -35,9 +38,6 @@ jobs:
           EWAY_API_PASSWORD: ${{ env.EWAY_API_PASSWORD }}
           EWAY_PUBLIC_KEY: ${{ env.EWAY_PUBLIC_KEY }}
           EWAY_END_POINT: ${{ env.EWAY_END_POINT }}
-
-      - name: Change wrapper permissions
-        run: chmod +x ./android/gradlew
 
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
