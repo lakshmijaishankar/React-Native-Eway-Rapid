@@ -31,16 +31,6 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./android/gradlew
         
-      - name: Run Gradle build
-        run: |
-          cd ./android
-          ./gradlew build
-        env:
-          EWAY_API_KEY: ${{ env.EWAY_API_KEY }}
-          EWAY_API_PASSWORD: ${{ env.EWAY_API_PASSWORD }}
-          EWAY_PUBLIC_KEY: ${{ env.EWAY_PUBLIC_KEY }}
-          EWAY_END_POINT: ${{ env.EWAY_END_POINT }}
-
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
 
@@ -51,6 +41,16 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Run Gradle build
+        run: |
+          cd ./android
+          ./gradlew build
+        env:
+          EWAY_API_KEY: ${{ env.EWAY_API_KEY }}
+          EWAY_API_PASSWORD: ${{ env.EWAY_API_PASSWORD }}
+          EWAY_PUBLIC_KEY: ${{ env.EWAY_PUBLIC_KEY }}
+          EWAY_END_POINT: ${{ env.EWAY_END_POINT }}
 
       - name: Build App
         run: |
